@@ -1,0 +1,5 @@
+@import 'react-vertical-timeline-component/style.min.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

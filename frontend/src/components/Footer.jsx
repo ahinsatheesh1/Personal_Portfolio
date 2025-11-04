@@ -23,13 +23,6 @@ export default function Footer() {
           >
             LinkedIn
           </a>
-          <a
-            href="/Ahin_Satheesh_resume.pdf"
-            download
-            className="hover:text-blue-500"
-          >
-            Resume
-          </a>
         </div>
       </div>
     </footer>

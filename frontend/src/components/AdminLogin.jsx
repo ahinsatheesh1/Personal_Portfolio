@@ -1,4 +1,4 @@
-// src/components/AdminLogin.jsx
+﻿// src/components/AdminLogin.jsx
 import { useState } from "react";
 import api from "../services/api";
 
@@ -13,10 +13,10 @@ export default function AdminLogin() {
     try {
       const { data } = await api.post("/api/auth/login", { email, password });
       localStorage.setItem("token", data.token);
-      alert("✅ Login successful!");
-      window.location.href = "/";
+      alert("âœ… Login successful!");
+      window.location.href = "/admin";
     } catch (err) {
-      setError("❌ Invalid credentials");
+      setError("âŒ Invalid credentials");
     }
   };
 
@@ -75,3 +75,4 @@ export default function AdminLogin() {
     </div>
   );
 }
+

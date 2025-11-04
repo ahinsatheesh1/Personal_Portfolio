@@ -10,7 +10,9 @@ export default function EditProjectForm({ project, onClose, onUpdated }) {
     githubLink: project.githubLink,
     liveDemo: project.liveDemo,
     techStack: project.techStack?.join(", ") || "",
+    thumbnail: project.thumbnail || "",
   });
+  const [uploading, setUploading] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -33,6 +35,27 @@ export default function EditProjectForm({ project, onClose, onUpdated }) {
       onClose();
     } catch (err) {
       alert("❌ Update failed: " + err.message);
+    }
+  };
+
+  const handleThumbFile = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const { data } = await api.post("/api/uploads/projects", formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (data?.url) setForm((f) => ({ ...f, thumbnail: data.url }));
+    } catch (err) {
+      alert("Upload failed: " + (err?.response?.data?.error || err.message));
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -79,6 +102,18 @@ export default function EditProjectForm({ project, onClose, onUpdated }) {
           placeholder="Tech stack (comma separated)"
         />
 
+        <div className="mb-3">
+          <label className="block text-sm mb-1">Thumbnail</label>
+          {form.thumbnail ? (
+            <img
+              src={form.thumbnail.startsWith("http") ? form.thumbnail : `${api.defaults.baseURL}${form.thumbnail}`}
+              alt={form.title}
+              className="w-full h-32 object-cover rounded mb-2"
+            />
+          ) : null}
+          <input type="file" accept="image/*" onChange={handleThumbFile} />
+        </div>
+
         <div className="flex justify-end gap-3">
           <button
             type="button"
@@ -89,9 +124,10 @@ export default function EditProjectForm({ project, onClose, onUpdated }) {
           </button>
           <button
             type="submit"
+            disabled={uploading}
             className="px-4 py-1 bg-blue-600 text-white rounded"
           >
-            Save
+            {uploading ? "Uploading..." : "Save"}
           </button>
         </div>
       </form>

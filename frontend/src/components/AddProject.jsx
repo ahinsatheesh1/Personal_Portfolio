@@ -11,6 +11,8 @@ export default function AddProject({ onAdded }) {
     techStack: "",
     thumbnail: "",
   });
+  const [uploading, setUploading] = useState(false);
+  const [thumbPreview, setThumbPreview] = useState("");
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -34,6 +36,32 @@ export default function AddProject({ onAdded }) {
       setForm({ title: "", description: "", githubLink: "", liveDemo: "", techStack: "", thumbnail: "" });
     } catch (err) {
       alert("❌ Failed to add project: " + err.message);
+    }
+  };
+
+  const handleThumbFile = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const { data } = await api.post("/api/uploads/projects", formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      if (data?.url) {
+        const absolute = data.url.startsWith("http")
+          ? data.url
+          : `${api.defaults.baseURL}${data.url}`;
+        setForm((f) => ({ ...f, thumbnail: data.url }));
+        setThumbPreview(absolute);
+      }
+    } catch (err) {
+      alert("Upload failed: " + (err?.response?.data?.error || err.message));
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -82,19 +110,27 @@ export default function AddProject({ onAdded }) {
         placeholder="Tech stack (comma separated, e.g., React, Node.js)"
         className="w-full mb-2 p-2 border rounded text-black"
       />
+      <div className="mb-2">
+        <label className="block text-sm mb-1">Project Image (upload)</label>
+        <input type="file" accept="image/*" onChange={handleThumbFile} />
+        {thumbPreview ? (
+          <img src={thumbPreview} alt="preview" className="mt-2 w-full max-h-48 object-cover rounded" />
+        ) : null}
+      </div>
       <input
         type="text"
         name="thumbnail"
         value={form.thumbnail}
         onChange={handleChange}
-        placeholder="Thumbnail Image URL"
+        placeholder="Or paste image URL"
         className="w-full mb-2 p-2 border rounded text-black"
       />
       <button
         type="submit"
+        disabled={uploading}
         className="bg-green-600 text-white px-4 py-2 rounded hover:opacity-80"
       >
-        Add
+        {uploading ? "Uploading..." : "Add"}
       </button>
     </form>
   );

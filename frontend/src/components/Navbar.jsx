@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import ResumeLink from "./ResumeLink";
+// in-page anchors; no router links needed here
 import { ThemeContext } from "../context/ThemeContext";
 import { FaSun, FaMoon, FaBars, FaTimes } from "react-icons/fa";
 
@@ -8,48 +9,41 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const links = [
-    { to: "/", label: "Home" },
-    { to: "/about", label: "About" },
-    { to: "/skills", label: "Skills" },
-    { to: "/experience", label: "Experience" },
-    { to: "/projects", label: "Projects" },
-    { to: "/certifications", label: "Certifications" },
-    { to: "/contact", label: "Contact" },
+    { href: "/#about", label: "About Me" },
+    { href: "/#experience", label: "Experience" },
+    { href: "/#skills", label: "Skills" },
+    { href: "/projects", label: "Projects" },
+    { href: "/#contact", label: "Contact" },
   ];
 
   return (
-    <nav className="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50">
+    <nav className="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/70 backdrop-blur border-b border-white/10">
       <div className="max-w-6xl mx-auto px-4 flex justify-between items-center h-16">
         {/* logo / name */}
-        <Link
-          to="/"
-          className="text-xl font-bold text-blue-600 dark:text-blue-400"
-        >
-          Ahin Satheesh
-        </Link>
+        <a href="/" className="text-xl font-extrabold tracking-tight">
+          <span className="bg-gradient-to-r from-blue-500 to-blue-300 bg-clip-text text-transparent">Ahin</span>
+          <span className="text-gray-900 dark:text-gray-100"> Satheesh</span>
+        </a>
 
         {/* desktop links */}
-        <ul className="hidden md:flex space-x-6">
+        <ul className="hidden md:flex items-center gap-6">
           {links.map((link) => (
-            <li key={link.to}>
-              <NavLink
-                to={link.to}
-                className={({ isActive }) =>
-                  `hover:text-blue-500 ${
-                    isActive
-                      ? "text-blue-600 font-semibold"
-                      : "text-gray-700 dark:text-gray-200"
-                  }`
-                }
-              >
+            <li key={link.href}>
+              <a href={link.href} className="text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-blue-500 transition">
                 {link.label}
-              </NavLink>
+              </a>
             </li>
           ))}
         </ul>
 
         {/* actions */}
         <div className="flex items-center space-x-4">
+          <ResumeLink
+            showPlaceholder
+            className="hidden md:inline-flex px-3 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow hover:opacity-95 transition"
+          >
+            Resume
+          </ResumeLink>
           <button
             onClick={() => setDarkMode(!darkMode)}
             className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
@@ -79,25 +73,28 @@ export default function Navbar() {
 
       {/* mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-white dark:bg-gray-800 shadow-md">
+        <div className="md:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur shadow-md border-b border-white/10">
           <ul className="flex flex-col space-y-4 p-4">
             {links.map((link) => (
-              <li key={link.to}>
-                <NavLink
-                  to={link.to}
+              <li key={link.href}>
+                <a
+                  href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className={({ isActive }) =>
-                    `block hover:text-blue-500 ${
-                      isActive
-                        ? "text-blue-600 font-semibold"
-                        : "text-gray-700 dark:text-gray-200"
-                    }`
-                  }
+                  className="block hover:text-blue-500 text-gray-700 dark:text-gray-200"
                 >
                   {link.label}
-                </NavLink>
+                </a>
               </li>
             ))}
+            <li>
+              <ResumeLink
+                showPlaceholder
+                className="block mt-2 px-3 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center"
+                onClick={() => setIsOpen(false)}
+              >
+                Resume
+              </ResumeLink>
+            </li>
           </ul>
         </div>
       )}

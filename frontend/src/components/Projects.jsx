@@ -53,7 +53,7 @@ export default function Projects() {
           {/* ✅ Show thumbnail if present */}
           {p.thumbnail && (
             <img
-              src={p.thumbnail}
+              src={p.thumbnail.startsWith("http") ? p.thumbnail : `${api.defaults.baseURL}${p.thumbnail}`}
               alt={p.title}
               className="w-full h-48 object-cover rounded mb-3"
             />

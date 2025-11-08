@@ -7,6 +7,7 @@ export default function EditProjectForm({ project, onClose, onUpdated }) {
   const [form, setForm] = useState({
     title: project.title,
     description: project.description,
+    about: project.about || "",
     githubLink: project.githubLink,
     liveDemo: project.liveDemo,
     techStack: project.techStack?.join(", ") || "",
@@ -25,7 +26,10 @@ export default function EditProjectForm({ project, onClose, onUpdated }) {
         `/api/projects/${project._id}`,
         {
           ...form,
-          techStack: form.techStack.split(",").map((t) => t.trim()),
+          techStack: form.techStack
+            .split(",")
+            .map((t) => t.trim())
+            .filter(Boolean),
         },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -79,6 +83,13 @@ export default function EditProjectForm({ project, onClose, onUpdated }) {
           value={form.description}
           onChange={handleChange}
           placeholder="Description"
+        />
+
+        <Textarea
+          name="about"
+          value={form.about}
+          onChange={handleChange}
+          placeholder="About Project (optional)"
         />
 
         <Input

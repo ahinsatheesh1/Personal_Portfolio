@@ -8,6 +8,135 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Base typography */
+@layer base {
+  :root {
+    --brand-color: #b43e8f;
+    --brand-color-hover: #c95ba2;
+    --brand-color-strong: #a23682;
+    --brand-color-deep: #8a2f75;
+    --brand-color-soft: rgba(180, 62, 143, 0.12);
+    --brand-color-soft-strong: rgba(180, 62, 143, 0.18);
+    --brand-color-border-20: rgba(180, 62, 143, 0.2);
+    --brand-color-border-25: rgba(180, 62, 143, 0.25);
+    --brand-color-border-35: rgba(196, 98, 156, 0.35);
+    --brand-color-border-40: rgba(196, 98, 156, 0.4);
+    --brand-color-gradient-mid: #d36dab;
+    --brand-color-gradient-end: #ec9fcf;
+  }
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply font-sans leading-relaxed text-gray-900 bg-white dark:text-[#ffe6d0] dark:bg-gray-950;
+  }
+  #root { @apply bg-white dark:bg-gray-950; }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight text-gray-900 dark:text-[#ffe6d0];
+  }
+  a {
+    @apply underline-offset-2 hover:underline;
+  }
+}
+
+@layer utilities {
+  .dark .text-white,
+  .dark .text-gray-100,
+  .dark .text-gray-200 {
+    color: #ffe6d0 !important;
+    font-weight: 600 !important;
+  }
+
+  :root:not(.dark) .text-orange-500,
+  :root:not(.dark) .hover\:text-orange-500:hover,
+  :root:not(.dark) .group:hover .group-hover\:text-orange-500 {
+    color: var(--brand-color) !important;
+    font-weight: 600 !important;
+  }
+
+  :root:not(.dark) .text-orange-600 {
+    color: var(--brand-color-strong) !important;
+    font-weight: 600 !important;
+  }
+
+  :root:not(.dark) .text-orange-700 {
+    color: var(--brand-color-deep) !important;
+    font-weight: 600 !important;
+  }
+
+  :root:not(.dark) .bg-orange-500 {
+    background-color: var(--brand-color) !important;
+  }
+
+  :root:not(.dark) .hover\:bg-orange-400:hover {
+    background-color: var(--brand-color-hover) !important;
+  }
+
+  :root:not(.dark) .border-orange-500\/20 {
+    border-color: var(--brand-color-border-20) !important;
+  }
+
+  :root:not(.dark) .border-orange-500\/25 {
+    border-color: var(--brand-color-border-25) !important;
+  }
+
+  :root:not(.dark) .border-orange-400\/20 {
+    border-color: rgba(196, 98, 156, 0.2) !important;
+  }
+
+  :root:not(.dark) .border-orange-400\/35 {
+    border-color: var(--brand-color-border-35) !important;
+  }
+
+  :root:not(.dark) .border-orange-400\/40 {
+    border-color: var(--brand-color-border-40) !important;
+  }
+
+  :root:not(.dark) .hover\:border-orange-500\/40:hover {
+    border-color: rgba(180, 62, 143, 0.4) !important;
+  }
+
+  :root:not(.dark) .bg-orange-100\/50 {
+    background-color: var(--brand-color-soft) !important;
+  }
+
+  :root:not(.dark) .bg-orange-100\/60 {
+    background-color: var(--brand-color-soft-strong) !important;
+  }
+
+  :root:not(.dark) .group:hover .group-hover\:bg-orange-500\/10 {
+    background-color: rgba(180, 62, 143, 0.1) !important;
+  }
+
+  :root:not(.dark) .shadow-orange-500\/30 {
+    --tw-shadow-color: rgba(180, 62, 143, 0.3) !important;
+  }
+
+  :root:not(.dark) .from-orange-500 {
+    --tw-gradient-from: var(--brand-color) var(--tw-gradient-from-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(180, 62, 143, 0));
+  }
+
+  :root:not(.dark) .from-orange-500\/45 {
+    --tw-gradient-from: rgba(180, 62, 143, 0.45) var(--tw-gradient-from-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(180, 62, 143, 0));
+  }
+
+  :root:not(.dark) .via-amber-400 {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--brand-color-gradient-mid) var(--tw-gradient-via-position), var(--tw-gradient-to, rgba(211, 109, 171, 0));
+  }
+
+  :root:not(.dark) .to-amber-300 {
+    --tw-gradient-to: var(--brand-color-gradient-end) var(--tw-gradient-to-position);
+  }
+
+  :root:not(.dark) .group:hover .group-hover\:bg-orange-500\/10 {
+    background-color: rgba(180, 62, 143, 0.1) !important;
+  }
+}
+
 /* Simple typing animation for the Interests component */
 .typing-1,
 .typing-2,

@@ -6,6 +6,7 @@ export default function AddProject({ onAdded }) {
   const [form, setForm] = useState({
     title: "",
     description: "",
+    about: "",
     githubLink: "",
     liveDemo: "",
     techStack: "",
@@ -21,21 +22,29 @@ export default function AddProject({ onAdded }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      if (!form.title.trim()) {
+        alert("Title is required");
+        return;
+      }
       const token = localStorage.getItem("token"); // ✅ admin token
       const { data } = await api.post(
         "/api/projects",
         {
           ...form,
-          techStack: form.techStack.split(",").map((t) => t.trim()),
+          techStack: form.techStack
+            .split(",")
+            .map((t) => t.trim())
+            .filter(Boolean),
         },
         {
           headers: { Authorization: `Bearer ${token}` }, // ✅ add token
         }
       );
       if (onAdded) onAdded(data); // refresh projects list
-      setForm({ title: "", description: "", githubLink: "", liveDemo: "", techStack: "", thumbnail: "" });
+      setForm({ title: "", description: "", about: "", githubLink: "", liveDemo: "", techStack: "", thumbnail: "" });
     } catch (err) {
-      alert("❌ Failed to add project: " + err.message);
+      const msg = err?.response?.data?.error || err.message;
+      alert("❌ Failed to add project: " + msg);
     }
   };
 
@@ -77,6 +86,7 @@ export default function AddProject({ onAdded }) {
         value={form.title}
         onChange={handleChange}
         placeholder="Project Title"
+        required
         className="w-full mb-2 p-2 border rounded text-black"
       />
       <textarea
@@ -85,6 +95,14 @@ export default function AddProject({ onAdded }) {
         onChange={handleChange}
         placeholder="Description"
         className="w-full mb-2 p-2 border rounded text-black"
+      />
+      <textarea
+        name="about"
+        value={form.about}
+        onChange={handleChange}
+        placeholder="About Project (optional)"
+        className="w-full mb-2 p-2 border rounded text-black"
+        rows={4}
       />
       <input
         type="text"

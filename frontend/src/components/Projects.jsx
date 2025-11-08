@@ -61,6 +61,7 @@ export default function Projects() {
 
           <h3 className="text-xl font-semibold">{p.title}</h3>
           <p>{p.description}</p>
+          {p.about ? <p className="mt-1 text-sm opacity-90">{p.about}</p> : null}
           <p>
             <strong>Tech:</strong> {p.techStack?.join(", ")}
           </p>
@@ -70,7 +71,7 @@ export default function Projects() {
                 href={p.githubLink}
                 target="_blank"
                 rel="noreferrer"
-                className="text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-blue-600 dark:text-orange-400 hover:underline"
               >
                 GitHub
               </a>
@@ -81,7 +82,7 @@ export default function Projects() {
                 href={p.liveDemo}
                 target="_blank"
                 rel="noreferrer"
-                className="text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-blue-600 dark:text-orange-400 hover:underline"
               >
                 Live Demo
               </a>

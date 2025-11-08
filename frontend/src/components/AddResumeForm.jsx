@@ -51,7 +51,7 @@ export default function AddResumeForm() {
       {uploading && <p className="text-sm">Uploading...</p>}
       {url && (
         <p className="text-sm mt-2">
-          Current: <a className="text-blue-500 underline" href={absolute} target="_blank" rel="noreferrer">View</a>
+          Current: <a className="text-blue-500 dark:text-orange-400 underline" href={absolute} target="_blank" rel="noreferrer">View</a>
         </p>
       )}
       {message && <p className="mt-2 text-sm">{message}</p>}

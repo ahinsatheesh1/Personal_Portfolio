@@ -11,9 +11,9 @@ export default function ContactSection() {
         {/* Right: Heading + copy */}
         <div className="order-1 md:order-2 md:text-right">
           <h2 className="text-3xl md:text-4xl font-extrabold leading-tight tracking-tight">
-            <span className="bg-gradient-to-r from-blue-500 to-blue-300 bg-clip-text text-transparent">Let's Talk</span>
+            <span className="bg-gradient-to-r from-[#b43e8f] to-[#ec9fcf] dark:from-orange-400 dark:to-amber-300 bg-clip-text text-transparent">Let's Talk</span>
           </h2>
-          <div className="mt-2 ml-auto h-1 w-24 rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
+          <div className="mt-2 ml-auto h-1 w-24 rounded-full bg-gradient-to-r from-[#b43e8f] to-[#ec9fcf] dark:from-orange-400 dark:to-amber-300" />
           <p className="mt-3 text-gray-600 dark:text-gray-400 md:ml-auto max-w-xl">
             Have an idea, a role, or a project in mind? I'd love to hear from
             you. Drop a message and I'll get back soon.
@@ -23,4 +23,3 @@ export default function ContactSection() {
     </section>
   );
 }
-

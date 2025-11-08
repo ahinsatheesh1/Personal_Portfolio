@@ -48,6 +48,18 @@ const categories = [
   },
 ];
 
+const iconColorMap = {
+  "React": "#61DAFB",
+  "HTML5": "#E34F26",
+  "CSS3": "#1572B6",
+  "JavaScript": "#F7DF1E",
+  "Node.js": "#339933",
+  "MongoDB": "#47A248",
+  "Docker": "#2496ED",
+  "Git / GitHub": "#F05032",
+  "Python": "#3776AB",
+};
+
 export default function SkillsSection() {
   const accents = [
     "from-blue-500 to-cyan-400",
@@ -60,9 +72,9 @@ export default function SkillsSection() {
     <section id="skills" className="max-w-6xl mx-auto px-6 py-16">
       <div className="mb-6">
         <h2 className="text-3xl md:text-4xl font-extrabold leading-tight tracking-tight">
-          <span className="bg-gradient-to-r from-blue-500 to-blue-300 bg-clip-text text-transparent">Skills</span>
+          <span className="bg-gradient-to-r from-[#b43e8f] to-[#ec9fcf] dark:from-orange-400 dark:to-amber-300 bg-clip-text text-transparent">Skills</span>
         </h2>
-        <div className="mt-2 h-1 w-24 rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
+        <div className="mt-2 h-1 w-24 rounded-full bg-gradient-to-r from-[#b43e8f] to-[#ec9fcf] dark:from-orange-400 dark:to-amber-300" />
         <p className="mt-3 text-gray-600 dark:text-gray-400">A focused toolkit I use to build, ship, and iterate.</p>
       </div>
 
@@ -72,10 +84,10 @@ export default function SkillsSection() {
           return (
             <div
               key={cat.title}
-              className="rounded-2xl border border-white/10 bg-white/5 p-5 hover:-translate-y-0.5 hover:border-blue-500/30 transition"
+              className="rounded-2xl border border-white/10 bg-[#f4f0ec] dark:bg-[#1f1f1f] p-5 hover:-translate-y-0.5 hover:border-blue-500/30 transition"
             >
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold">{cat.title}</h3>
+                <h3 className="text-lg font-semibold text-orange-500 dark:text-[#ffe6d0]">{cat.title}</h3>
                 <div className={`h-1.5 w-24 rounded-full bg-gradient-to-r ${accent}`} />
               </div>
 
@@ -84,15 +96,20 @@ export default function SkillsSection() {
                   <div key={item.label}>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        {item.Icon ? <item.Icon className="text-blue-400" /> : null}
-                        <span className="text-sm md:text-base">{item.label}</span>
+                        {item.Icon ? (
+                          <item.Icon
+                            style={{ color: iconColorMap[item.label] || "#6B7280" }}
+                            className="dark:text-orange-400"
+                          />
+                        ) : null}
+                        <span className="text-sm md:text-base text-orange-500 dark:text-[#ffe6d0]">{item.label}</span>
                       </div>
                       {typeof item.level === "number" ? (
-                        <span className="text-xs text-gray-500 dark:text-gray-400">{item.level}%</span>
+                        <span className="text-xs text-orange-500 dark:text-[#ffe6d0]">{item.level}%</span>
                       ) : null}
                     </div>
                     {typeof item.level === "number" ? (
-                      <div className="mt-1 h-1.5 w-full rounded-full bg-white/10">
+                      <div className="mt-1 h-1.5 w-full rounded-full bg-black/10 dark:bg-white/25">
                         <div
                           className={`h-1.5 rounded-full bg-gradient-to-r ${accent}`}
                           style={{ width: `${item.level}%` }}

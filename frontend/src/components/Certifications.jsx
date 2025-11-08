@@ -50,7 +50,11 @@ export default function Certificates() {
 
   return (
     <div className="max-w-3xl mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-4">Certifications</h2>
+      <h2 className="text-2xl font-bold mb-4">
+        <span className="bg-gradient-to-r from-blue-500 to-blue-300 dark:from-orange-400 dark:to-amber-300 bg-clip-text text-transparent">
+          Certifications
+        </span>
+      </h2>
 
       {/* ✅ Admin can add */}
       {isAdmin() && <AddCertificateForm onAdded={handleAdded} />}
@@ -77,7 +81,7 @@ export default function Certificates() {
                   href={c.link}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-orange-400 hover:underline"
                 >
                   View Certificate
                 </a>

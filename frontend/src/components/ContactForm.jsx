@@ -3,7 +3,7 @@ import api from "../services/api";
 import toast from "react-hot-toast";
 
 const Spinner = () => (
-  <svg className="animate-spin h-5 w-5 text-white mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+  <svg className="animate-spin h-5 w-5 text-black mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
   </svg>
@@ -35,7 +35,7 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg space-y-4">
+  <form onSubmit={handleSubmit} className="bg-[#f4f0ec] dark:bg-[#1f1f1f] p-6 rounded-2xl shadow-lg space-y-4">
       <input
         type="text"
         name="name"
@@ -63,10 +63,9 @@ export default function ContactForm() {
         required
         className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-lg dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none"
       />
-      <button type="submit" disabled={loading} className="w-full flex justify-center items-center bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:opacity-90 transition disabled:opacity-70">
+      <button type="submit" disabled={loading} className="w-full flex justify-center items-center bg-orange-500 hover:bg-orange-400 text-black py-3 rounded-lg font-bold transition disabled:opacity-70">
         {loading ? <Spinner /> : "Send Message"}
       </button>
     </form>
   );
 }
-

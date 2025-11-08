@@ -5,6 +5,8 @@ const projectSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
     description: String,
+    // Additional long-form details about the project
+    about: String,
     githubLink: String,
     liveDemo: String,
     techStack: [String],

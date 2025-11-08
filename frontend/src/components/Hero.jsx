@@ -26,11 +26,11 @@ export default function Hero() {
     <section id="about" className="max-w-6xl mx-auto px-6 py-16">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <div className="order-2 md:order-1">
-          <div className="mb-3 h-1 w-24 rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
+          <div className="mb-3 h-1 w-24 rounded-full bg-gradient-to-r from-orange-500 to-amber-300" />
           <p className="text-lg md:text-xl leading-relaxed text-gray-700 dark:text-gray-300">
             Hi, I'm
             {" "}
-            <span className="font-semibold bg-gradient-to-r from-blue-500 to-blue-300 bg-clip-text text-transparent">Ahin Satheesh</span>,
+            <span className="font-semibold bg-gradient-to-r from-orange-500 to-amber-300 dark:from-orange-400 dark:to-amber-300 bg-clip-text text-transparent">Ahin Satheesh</span>,
             {" "}
             a Computer Science student @ CUSAT, passionate about creating reliable and impactful digital solutions. My focus lies in
             {" "}
@@ -41,7 +41,7 @@ export default function Hero() {
         </div>
 
         <div className="order-1 md:order-2 flex flex-col items-center text-center">
-          <div className="p-[3px] rounded-2xl bg-gradient-to-br from-blue-500/50 to-purple-500/40">
+          <div className="p-[3px] rounded-2xl bg-gradient-to-br from-orange-500/45 to-amber-300/30">
             <img
               src={profileUrl || "/profile.jpg"}
               onError={handleImgError}
@@ -53,11 +53,11 @@ export default function Hero() {
           </div>
 
           <h1 className="mt-6 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
-            <span className="bg-gradient-to-r from-blue-500 to-blue-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-orange-500 to-amber-300 dark:from-orange-400 dark:to-amber-300 bg-clip-text text-transparent">
               Ahin Satheesh
             </span>
           </h1>
-          <div className="mt-3 h-1 w-24 rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
+          <div className="mt-3 h-1 w-24 rounded-full bg-gradient-to-r from-orange-500 to-amber-300" />
           <h2 className="mt-3 text-base md:text-xl text-gray-600 dark:text-gray-300">
             <Typewriter
               words={[

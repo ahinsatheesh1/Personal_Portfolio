@@ -58,7 +58,7 @@ export default function AdminLogin() {
   <button
     type="button"
     onClick={() => setShowPassword(!showPassword)}
-    className="ml-2 text-sm text-blue-600"
+    className="ml-2 text-sm text-blue-600 dark:text-orange-400"
   >
     {showPassword ? "Hide" : "Show"}
   </button>

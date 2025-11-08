@@ -28,7 +28,7 @@ export default function ProjectsTeaser() {
           <div className="space-y-4">
             {loading ? (
               [1, 2, 3].map((i) => (
-                <div key={i} className="animate-pulse rounded-xl h-24 bg-white/5 border border-white/10" />
+            <div key={i} className="animate-pulse rounded-xl h-24 bg-white/5 border border-white/10" />
               ))
             ) : projects.length ? (
               projects.map((p) => (
@@ -53,7 +53,7 @@ export default function ProjectsTeaser() {
                         <p className="text-sm text-gray-500 dark:text-gray-400">{p.techStack.slice(0,4).join(", ")}</p>
                       ) : null}
                     </div>
-                    <FaArrowRight className="mt-1 text-blue-400" />
+                    <FaArrowRight className="mt-1 text-blue-400 dark:text-orange-400" />
                   </div>
                 </a>
               ))
@@ -71,7 +71,7 @@ export default function ProjectsTeaser() {
           <div className="mt-6 flex gap-3">
             <Link
               to="/projects"
-              className="px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow hover:opacity-95 transition"
+              className="px-6 py-3 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-bold shadow transition"
             >
               View Projects
             </Link>
@@ -79,8 +79,8 @@ export default function ProjectsTeaser() {
               href="https://github.com/ahinsatheesh1"
               target="_blank"
               rel="noreferrer"
-              className="px-6 py-3 rounded-lg border border-white/20 text-blue-300 hover:bg-white/5 transition inline-flex items-center gap-2"
-            >
+            className="px-6 py-3 rounded-lg border border-white/20 text-blue-300 hover:bg-white/5 transition inline-flex items-center gap-2"
+          >
               <FaGithub /> GitHub
             </a>
           </div>

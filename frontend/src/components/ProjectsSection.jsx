@@ -21,7 +21,7 @@ export default function ProjectsSection() {
         <div className="flex md:justify-end gap-3">
           <Link
             to="/projects"
-            className="px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow hover:opacity-95 transition inline-flex items-center gap-2"
+          className="px-6 py-3 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-bold shadow transition inline-flex items-center gap-2"
           >
             View Projects <FaArrowRight />
           </Link>

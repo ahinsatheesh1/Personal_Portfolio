@@ -50,7 +50,7 @@ export default function Experience({ showCTA = true }) {
           <div className="md:text-left order-2 md:order-1 mt-6 md:mt-12">
             <a
               href="/experience"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow hover:opacity-95 transition"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-orange-500 hover:bg-orange-400 text-black font-bold shadow transition"
             >
               Know more about this
             </a>
@@ -59,12 +59,12 @@ export default function Experience({ showCTA = true }) {
         {/* Right: Heading + details */}
         <div className={showCTA ? "order-1 md:order-2 md:pl-16 xl:pl-24 md:justify-self-end" : ""}>
           <h2 className="text-3xl md:text-4xl font-extrabold leading-tight tracking-tight mb-1">
-            <span className="bg-gradient-to-r from-blue-500 to-blue-300 bg-clip-text text-transparent">Experience</span>
+            <span className="bg-gradient-to-r from-orange-500 to-amber-300 dark:from-orange-400 dark:to-amber-300 bg-clip-text text-transparent">Experience</span>
           </h2>
-          <div className="mb-2 h-1 w-24 rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
+          <div className="mb-2 h-1 w-24 rounded-full bg-gradient-to-r from-orange-500 to-amber-300" />
           <div className="flex items-center gap-3">
-            <h3 className="text-2xl font-bold leading-tight m-0">
-              <span className="bg-gradient-to-r from-indigo-300 to-violet-300 bg-clip-text text-transparent">Tata Consultancy Services (TCS)</span>
+            <h3 className="text-2xl font-extrabold leading-tight m-0 text-gray-900 dark:text-gray-100">
+              Tata Consultancy Services (TCS)
             </h3>
             <img
               src="/tcs.png"
@@ -72,13 +72,13 @@ export default function Experience({ showCTA = true }) {
               className="h-8 w-8 rounded-full ring-2 ring-white/20 bg-white object-contain p-1 shadow"
             />
           </div>
-          <p className="mt-1 text-indigo-300 dark:text-indigo-300">
+          <p className="mt-1 text-gray-900 dark:text-gray-100 font-bold">
             Summer Intern - Data Science / Machine Learning
           </p>
-          <p className="text-sm text-gray-400 dark:text-gray-400">
-            <span className="text-gray-300 dark:text-gray-300">May 2025 - July 2025</span>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            <span className="text-gray-700 dark:text-gray-300">May 2025 - July 2025</span>
             {" "}|{" "}
-            <span className="text-teal-300">Hybrid</span>
+            <span className="text-teal-600 dark:text-teal-300">Hybrid</span>
           </p>
         </div>
       </div>
@@ -91,7 +91,7 @@ export default function Experience({ showCTA = true }) {
           experiences.map((exp) => (
             <div
               key={exp._id}
-              className="border border-gray-300 dark:border-gray-700 rounded-lg p-4 mb-4 bg-white dark:bg-gray-800"
+              className="border border-gray-300 dark:border-gray-700 rounded-lg p-4 mb-4 bg-white dark:bg-gray-800 shadow-sm"
             >
               <h3 className="text-xl font-semibold">{exp.role}</h3>
               <p className="italic">{exp.company}</p>

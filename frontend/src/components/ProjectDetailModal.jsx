@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { FaGithub, FaExternalLinkAlt, FaTimes } from "react-icons/fa";
 import api from "../services/api";
 
@@ -6,6 +6,11 @@ export default function ProjectDetailModal({ project, onClose }) {
   const [entered, setEntered] = useState(false);
 
   // Animate in and lock background scroll while open
+  const handleClose = useCallback(() => {
+    setEntered(false);
+    setTimeout(() => onClose?.(), 250);
+  }, [onClose]);
+
   useEffect(() => {
     const id = setTimeout(() => setEntered(true), 10);
     const prev = document.body.style.overflow;
@@ -19,12 +24,7 @@ export default function ProjectDetailModal({ project, onClose }) {
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = prev;
     };
-  }, []);
-
-  const handleClose = () => {
-    setEntered(false);
-    setTimeout(() => onClose?.(), 250);
-  };
+  }, [handleClose]);
 
   if (!project) return null;
 

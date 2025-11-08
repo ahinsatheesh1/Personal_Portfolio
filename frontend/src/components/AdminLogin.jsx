@@ -1,4 +1,3 @@
-﻿// src/components/AdminLogin.jsx
 import { useState } from "react";
 import api from "../services/api";
 
@@ -13,10 +12,11 @@ export default function AdminLogin() {
     try {
       const { data } = await api.post("/api/auth/login", { email, password });
       localStorage.setItem("token", data.token);
-      alert("âœ… Login successful!");
+      // eslint-disable-next-line no-alert
+      alert("Login successful!");
       window.location.href = "/admin";
     } catch (err) {
-      setError("âŒ Invalid credentials");
+      setError("Invalid credentials");
     }
   };
 
@@ -35,35 +35,34 @@ export default function AdminLogin() {
         <input type="password" name="fake-password" className="hidden" autoComplete="new-password" />
 
         {/* Real email field */}
-       <input
-  type="email"
-  placeholder="Email"
-  className="w-full mb-3 p-2 border rounded text-black dark:text-white bg-white dark:bg-gray-700"
-  value={email}
-  onChange={(e) => setEmail(e.target.value)}
-  autoComplete="off"
-  name="real-email"
-/>
+        <input
+          type="email"
+          placeholder="Email"
+          className="w-full mb-3 p-2 border rounded text-black dark:text-white bg-white dark:bg-gray-700"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          autoComplete="off"
+          name="real-email"
+        />
 
-<div className="flex items-center mb-3">
-  <input
-    type={showPassword ? "text" : "password"}
-    placeholder="Password"
-    className="flex-grow p-2 border rounded text-black dark:text-white bg-white dark:bg-gray-700"
-    value={password}
-    onChange={(e) => setPassword(e.target.value)}
-    autoComplete="new-password"
-    name="real-password"
-  />
-  <button
-    type="button"
-    onClick={() => setShowPassword(!showPassword)}
-    className="ml-2 text-sm text-blue-600 dark:text-orange-400"
-  >
-    {showPassword ? "Hide" : "Show"}
-  </button>
-</div>
-
+        <div className="flex items-center mb-3">
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            className="flex-grow p-2 border rounded text-black dark:text-white bg-white dark:bg-gray-700"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            autoComplete="new-password"
+            name="real-password"
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="ml-2 text-sm text-blue-600 dark:text-orange-400"
+          >
+            {showPassword ? "Hide" : "Show"}
+          </button>
+        </div>
 
         <button
           type="submit"
